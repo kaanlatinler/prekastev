@@ -13,7 +13,7 @@ const QuestionRow_black = ({faqs}) => {
                     <div class="expand-group">
                         {faqs.map((faq, index) => (
                             index >= 10 ?
-                            <div class="expand">
+                            <div key={index} class="expand">
                                 <h4>{faq.question}</h4>
                                 <div class="hidden-content">
                                     {faq.answer}
