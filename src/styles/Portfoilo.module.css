@@ -1,0 +1,16 @@
+/* components/Portfoilo.module.css */
+.item {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out; /* Animasyon efekti */
+  }
+  
+  .item.isotope-item {
+    opacity: 1; /* Görünen öğeler için */
+  }
+  
+  /* Filtreleme düğmeleri için stiller */
+  .filters a.selected {
+    font-weight: bold;
+    color: #333; /* Seçili düğme rengi */
+  }
+  
