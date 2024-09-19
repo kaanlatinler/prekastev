@@ -1,6 +1,6 @@
-const Footer = ({ disable }) => {
+const FooterAdmin = () => {
   return (
-    <footer className={disable ? "" : "d-none"}>
+    <footer>
       <div className="container">
         <div className="row">
           <div className="col-lg-3 mb-5">
@@ -72,7 +72,6 @@ const Footer = ({ disable }) => {
               &copy; Copyright {new Date().getFullYear()} - Prekastev Yiğit
               Yüceer Proje Yönetimi Markasıdır
             </div>
-
             <div className="col-md-6 text-right">
               <div className="social-icons">
                 <a href="https://www.instagram.com/prekastev/">
@@ -97,4 +96,4 @@ const Footer = ({ disable }) => {
   );
 };
 
-export default Footer;
+export default FooterAdmin;

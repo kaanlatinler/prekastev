@@ -1,15 +1,15 @@
-import Link from 'next/link'; // Next.js Link bileşeni
+import Link from "next/link"; // Next.js Link bileşeni
 
-const Header = () => {
+const Header = ({ disable }) => {
   return (
-    <header>
+    <header className={disable ? "" : "d-none"}>
       {/* Üst Bilgi (Çalışma Saatleri ve Sosyal İkonlar) */}
       <div className="info">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="column">
-                Working Hours Monday - Friday{' '}
+                Working Hours Monday - Friday{" "}
                 <span className="id-color">
                   <strong>08:00-16:00</strong>
                 </span>
@@ -50,11 +50,13 @@ const Header = () => {
               <span id="menu-btn"></span>
 
               {/* Ana Menü */}
-              <div className="md-flex-col">
+              <div>
                 <nav className="md-flex">
                   <ul id="mainmenu">
-                  <li>
-                      <Link href="https://www.instagram.com/prekastev/">İNSTAGRAM</Link>
+                    <li>
+                      <Link href="https://www.instagram.com/prekastev/">
+                        İNSTAGRAM
+                      </Link>
                     </li>
                     <li>
                       <Link href="/">Home</Link>
@@ -75,7 +77,12 @@ const Header = () => {
                       <Link href="/founder">KURUCUMUZ</Link>
                     </li>
                     <li>
-                      <Link target='_blank' href="https://drive.google.com/file/d/17sjSQYnSRMC7rn8dUtY2cQV8_C-rLANr/view?usp=sharing">KATALOG İNDİR</Link>
+                      <Link
+                        target="_blank"
+                        href="https://drive.google.com/file/d/17sjSQYnSRMC7rn8dUtY2cQV8_C-rLANr/view?usp=sharing"
+                      >
+                        KATALOG İNDİR
+                      </Link>
                     </li>
                   </ul>
                 </nav>

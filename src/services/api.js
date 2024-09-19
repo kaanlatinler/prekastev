@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://prekastev.vercel.app/api';
+const baseURL = 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL,

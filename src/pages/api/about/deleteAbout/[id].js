@@ -1,10 +1,18 @@
 import { connectToDatabase } from '../../../../lib/mongodb';
 import Item from '../../../../models/home_about';
+import { authMiddleware } from '../../../../middleware/authMiddleware';
 
 export default async function handler(req, res) {
   const { method } = req;
 
   await connectToDatabase();
+
+  await new Promise((resolve, reject) => {
+    authMiddleware(req, res, (err) => {
+    if (err) return reject(err);
+    resolve();
+    });
+});
 
   switch (method) {
     case 'DELETE':
@@ -18,7 +26,7 @@ export default async function handler(req, res) {
         const deletedItem = await Item.findByIdAndDelete(id);
 
         if (!deletedItem) {
-          return res.status(404).json({ success: false, message: 'Item not found' });
+          return res.status(404).json({ success: false, message: 'About not found' });
         }
 
         res.status(200).json({ success: true, data: deletedItem });

@@ -1,6 +1,6 @@
 import { connectToDatabase } from '../../../../lib/mongodb';
-import Item from '../../../../models/home_steps';
-import { authMiddleware } from '../../../../middleware/authMiddleware';
+import Item from '../../../../models/founder';
+import {authMiddleware} from '../../../../middleware/authMiddleware';
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -15,21 +15,25 @@ export default async function handler(req, res) {
 });
 
   switch (method) {
-    case 'DELETE':
+    case 'PUT':
       try {
         const { id } = req.query;
+        const updateData = req.body;
 
         if (!id) {
           return res.status(400).json({ success: false, message: 'ID is required' });
         }
 
-        const deletedItem = await Item.findByIdAndDelete(id);
+        const updatedItem = await Item.findByIdAndUpdate(id, updateData, {
+          new: true,
+          runValidators: true,
+        });
 
-        if (!deletedItem) {
-          return res.status(404).json({ success: false, message: 'Step not found' });
+        if (!updatedItem) {
+          return res.status(404).json({ success: false, message: 'Founder not found' });
         }
 
-        res.status(200).json({ success: true, data: deletedItem });
+        res.status(200).json({ success: true, data: updatedItem });
       } catch (error) {
         res.status(500).json({ success: false, message: 'Server Error' });
       }

@@ -8,12 +8,12 @@ export default async function handler(req, res) {
     await connectToDatabase();
 
     // Eğer authMiddleware aktif olacaksa, bu kısmı açabilirsin:
-    // await new Promise((resolve, reject) => {
-    //     authMiddleware(req, res, (err) => {
-    //     if (err) return reject(err);
-    //     resolve();
-    //     });
-    // });
+    await new Promise((resolve, reject) => {
+        authMiddleware(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
+        });
+    });
 
     switch (method) {
         case 'POST':

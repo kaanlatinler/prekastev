@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         const model = await Item.findById(id);
 
         if (!model) {
-          return res.status(404).json({ success: false, message: 'Item not found' });
+          return res.status(404).json({ success: false, message: 'Model not found' });
         }
 
         res.status(200).json({ success: true, data: model });

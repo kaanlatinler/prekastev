@@ -4,7 +4,6 @@ import Slider from "@/components/home/Slider";
 import About from "@/components/home/About";
 import Steps from "@/components/home/Steps";
 import Portfoilo from "@/components/home/Portfoilo";
-import api from "@/services/api";
 
 export default function Home() {
 
@@ -31,6 +30,7 @@ export default function Home() {
       {/* Script dosyalarını ekliyoruz */}
       <Script src="/js/plugins.js" strategy="lazyOnload" />
       <Script src="/js/designesia.js" strategy="lazyOnload" />
+      <Script src="/js/menu.js" strategy="lazyOnload" />
       <Script src="/rs-plugin/js/jquery.themepunch.plugins.min.js" strategy="lazyOnload" />
       <Script src="/rs-plugin/js/jquery.themepunch.revolution.min.js" strategy="lazyOnload" />
       <Script src="/js/cookies.js" strategy="lazyOnload" />

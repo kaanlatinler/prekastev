@@ -1,18 +1,11 @@
 import { connectToDatabase } from '../../../lib/mongodb';
 import Item from '../../../models/portfoilo_models';
-import { authMiddleware } from '../../../middleware/authMiddleware';
 
 export default async function handler(req, res) {
   const { method } = req;
 
   await connectToDatabase();
 
-//   await new Promise((resolve, reject) => {
-//     authMiddleware(req, res, (err) => {
-//       if (err) return reject(err);
-//       resolve();
-//     });
-//   });
 
   switch (method) {
     case 'GET':
