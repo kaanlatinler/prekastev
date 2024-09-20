@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = 'http://localhost:3000/api';
+const baseURL = "https://prekastev.vercel.app/api";
 
 const api = axios.create({
   baseURL,
@@ -19,6 +19,5 @@ const api = axios.create({
 //   (error) => {
 //     return Promise.reject(error);
 //   }
-
 
 export default api;
