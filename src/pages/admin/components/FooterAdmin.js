@@ -60,7 +60,7 @@ const FooterAdmin = () => {
           </div>
 
           <div className="col-lg-3">
-            <img
+            <Image
               src="../../images/tescil/tescil.png"
               className="img-fluid"
               alt="Tescil"
