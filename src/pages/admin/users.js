@@ -8,9 +8,10 @@ import api from "@/services/api";
 export default function Users() {
   const router = useRouter();
   const [users, setUsers] = useState([]);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    setToken(localStorage.getItem("token"));
     if (!token) {
       alert("Giriş yapmalısınız");
       router.push("/admin/login");
@@ -33,7 +34,6 @@ export default function Users() {
 
   // Kullanıcı silme fonksiyonu
   const handleDelete = async (userId) => {
-    const token = localStorage.getItem("token");
     if (confirm("Bu kullanıcıyı silmek istediğinize emin misiniz?")) {
       try {
         await api.delete(`/users/deleteUser/${userId}`, {
