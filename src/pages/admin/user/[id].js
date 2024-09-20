@@ -9,8 +9,9 @@ import UpdateForm from "../components/user/UpdateForm";
 export default function User() {
   const router = useRouter();
   const [user, setUser] = useState([]);
+  const [token, setToken] = useState("");
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    setToken(localStorage.getItem("token"));
     if (!token) {
       alert("Giriş yapmalısınız");
       router.push("/admin/login");
@@ -69,7 +70,7 @@ export default function User() {
           <div className="d-flex align-items-center justify-content-center w-100">
             <div className="row justify-content-center w-100">
               <div className="col-md-8 col-lg-6 col-xxl-3">
-                <UpdateForm user={user} />
+                <UpdateForm user={user} token={token} />
               </div>
             </div>
           </div>

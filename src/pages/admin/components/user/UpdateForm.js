@@ -3,7 +3,7 @@ import Link from "next/link";
 import api from "@/services/api";
 import { useRouter } from "next/router";
 
-const UpdateForm = ({ user }) => {
+const UpdateForm = ({ user, token }) => {
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -11,9 +11,6 @@ const UpdateForm = ({ user }) => {
   const [alert, setAlert] = useState("");
   const [alertType, setAlertType] = useState(false);
   const router = useRouter();
-
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   // useEffect to split the user name into first name and last name
   useEffect(() => {

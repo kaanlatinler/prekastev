@@ -1,18 +1,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import api from "@/services/api";
-import { useRouter } from "next/router";
 
-const RegisterForm = () => {
+const RegisterForm = ({token}) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
   const [alertType, setAlertType] = useState(false);
-  const router = useRouter();
-
-  const token = localStorage.getItem("token");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
