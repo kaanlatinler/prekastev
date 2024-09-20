@@ -12,7 +12,7 @@ const HeaderAdmin = () => {
               {/* Logo */}
               <div id="logo">
                 <Link href="/">
-                  <Image className="logo" src="/images/logo.png" alt="Logo" />
+                  <img className="logo" src="/images/logo.png" alt="Logo" />
                 </Link>
               </div>
 

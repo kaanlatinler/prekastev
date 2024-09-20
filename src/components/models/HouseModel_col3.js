@@ -10,7 +10,7 @@ const HouseModel_col2 = ({ model }) => {
         <span className="id-color">{title1}</span> {title2}
       </h3>
       <div className="spacer-single"></div>
-      <Image src={model.mainPicture} className="img-responsive" alt="" />
+      <img src={model.mainPicture} className="img-responsive" alt="" />
       <div className="spacer-single"></div>
       <Link href={`/models/${model._id}`} className="btn-line btn-fullwidth">
         DAHA FAZLA

@@ -33,7 +33,7 @@ const Slider = () => {
                 data-masterspeed="200"
                 data-thumb=""
               >
-                <Image src={slider.image} alt="" />
+                <img src={slider.image} alt="" />
                 <div
                   className="tp-caption big-white sft"
                   data-x="0"

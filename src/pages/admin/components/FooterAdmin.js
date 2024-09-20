@@ -7,7 +7,7 @@ const FooterAdmin = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 mb-5">
-            <Image
+            <img
               src="../../images/logouzun.png"
               className="logo-small img-fluid"
               alt="Prekast Ev Logo"
@@ -60,7 +60,7 @@ const FooterAdmin = () => {
           </div>
 
           <div className="col-lg-3">
-            <Image
+            <img
               src="../../images/tescil/tescil.png"
               className="img-fluid"
               alt="Tescil"

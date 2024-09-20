@@ -111,7 +111,7 @@ const Portfoilo = () => {
                   </span>
                 </span>
               </Link>
-              <Image src={model.mainPicture} alt="" />
+              <img src={model.mainPicture} alt="" />
             </div>
           </div>
         ))}
@@ -128,7 +128,7 @@ const Portfoilo = () => {
                 </span>
               </span>
             </Link>
-            <Image src="../images/logobyuk.png" alt="" />
+            <img src="../images/logobyuk.png" alt="" />
           </div>
         </div>
       </div>

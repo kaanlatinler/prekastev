@@ -4,20 +4,26 @@ import api from "@/services/api";
 import { useRouter } from "next/router";
 
 const UpdateForm = ({ user, token }) => {
-  const [email, setEmail] = useState(user.email);
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [password, setPassword] = useState(user.password);
+  const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
   const [alertType, setAlertType] = useState(false);
   const router = useRouter();
 
   // useEffect to split the user name into first name and last name
   useEffect(() => {
-    const [firstName, ...lastName] = user.name.split(" ");
-    setName(firstName);
-    setSurname(lastName.join(" "));
-  }, [user.name]);
+    if (user) {
+      const [firstName, ...lastName] = user.name
+        ? user.name.split(" ")
+        : ["", ""];
+      setName(firstName);
+      setSurname(lastName.join(" "));
+      setEmail(user.email || "");
+      setPassword(user.password || "");
+    }
+  }, [user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

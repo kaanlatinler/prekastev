@@ -55,7 +55,7 @@ const About = () => {
                 className={`${index === 0 ? "spacer-single mt-5 py-3" : ""}`}
               ></div>
               <Link className="image-popup-no-margins" href={about.image}>
-                <Image
+                <img
                   src={about.image}
                   className="img-responsive mt-2 pt-1"
                   alt={about.image}
