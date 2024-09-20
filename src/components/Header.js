@@ -1,4 +1,5 @@
 import Link from "next/link"; // Next.js Link bileşeni
+import Image from "next/image";
 
 const Header = ({ disable }) => {
   return (
@@ -16,18 +17,18 @@ const Header = ({ disable }) => {
               </div>
               {/* Sosyal İkonlar */}
               <div className="column social">
-                <a href="https://www.instagram.com/prekastev/">
+                <Link href="https://www.instagram.com/prekastev/">
                   <i className="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@YIGITYUCEER">
+                </Link>
+                <Link href="https://www.youtube.com/@YIGITYUCEER">
                   <i className="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yigityuceer/">
+                </Link>
+                <Link href="https://www.linkedin.com/in/yigityuceer/">
                   <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://linktr.ee/yigityuceer">
+                </Link>
+                <Link href="https://linktr.ee/yigityuceer">
                   <i className="fa-brands fa-dribbble"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -42,7 +43,7 @@ const Header = ({ disable }) => {
               {/* Logo */}
               <div id="logo">
                 <Link href="/">
-                  <img className="logo" src="/images/logo.png" alt="Logo" />
+                  <Image className="logo" src="/images/logo.png" alt="Logo" />
                 </Link>
               </div>
 

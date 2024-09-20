@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import HeaderAdmin from "./admin/components/HeaderAdmin";
 import FooterAdmin from "./admin/components/FooterAdmin";
+import "/css/root.css";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();

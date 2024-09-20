@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link"; // Next.js Link bileşeni
 
 const HeaderAdmin = () => {
@@ -11,7 +12,7 @@ const HeaderAdmin = () => {
               {/* Logo */}
               <div id="logo">
                 <Link href="/">
-                  <img className="logo" src="/images/logo.png" alt="Logo" />
+                  <Image className="logo" src="/images/logo.png" alt="Logo" />
                 </Link>
               </div>
 

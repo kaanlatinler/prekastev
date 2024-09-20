@@ -1,10 +1,13 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const Footer = ({ disable }) => {
   return (
     <footer className={disable ? "" : "d-none"}>
       <div className="container">
         <div className="row">
           <div className="col-lg-3 mb-5">
-            <img
+            <Image
               src="../../images/logouzun.png"
               className="logo-small img-fluid"
               alt="Prekast Ev Logo"
@@ -28,7 +31,9 @@ const Footer = ({ disable }) => {
                 </span>
                 <span>
                   <strong>Email:</strong>
-                  <a href="mailto:satis@prekastev.com">satis@prekastev.com</a>
+                  <Link href="mailto:satis@prekastev.com">
+                    satis@prekastev.com
+                  </Link>
                 </span>
               </address>
             </div>
@@ -39,23 +44,23 @@ const Footer = ({ disable }) => {
               <h3>HİZMETLERİMİZ</h3>
               <ul>
                 <li>
-                  <a href="/pages/Services.html">Arsa Keşfi</a>
+                  <Link href="/pages/Services.html">Arsa Keşfi</Link>
                 </li>
                 <li>
-                  <a href="/pages/Services.html">Ruhsat Projeleri</a>
+                  <Link href="/pages/Services.html">Ruhsat Projeleri</Link>
                 </li>
                 <li>
-                  <a href="/pages/Services.html">Elektrik Ve Otomasyon</a>
+                  <Link href="/pages/Services.html">Elektrik Ve Otomasyon</Link>
                 </li>
                 <li>
-                  <a href="/pages/Services.html">Tüm Hizmetlerimiz</a>
+                  <Link href="/pages/Services.html">Tüm Hizmetlerimiz</Link>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="col-lg-3">
-            <img
+            <Image
               src="../../images/tescil/tescil.png"
               className="img-fluid"
               alt="Tescil"
@@ -75,24 +80,24 @@ const Footer = ({ disable }) => {
 
             <div className="col-md-6 text-right">
               <div className="social-icons">
-                <a href="https://www.instagram.com/prekastev/">
+                <Link href="https://www.instagram.com/prekastev/">
                   <i className="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@YIGITYUCEER">
+                </Link>
+                <Link href="https://www.youtube.com/@YIGITYUCEER">
                   <i className="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yigityuceer/">
+                </Link>
+                <Link href="https://www.linkedin.com/in/yigityuceer/">
                   <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://linktr.ee/yigityuceer">
+                </Link>
+                <Link href="https://linktr.ee/yigityuceer">
                   <i className="fa-brands fa-dribbble"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <a href="#" id="back-to-top"></a>
+      <Link href="#" id="back-to-top"></Link>
     </footer>
   );
 };

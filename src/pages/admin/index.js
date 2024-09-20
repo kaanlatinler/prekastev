@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Home() {
-  const router = useRouter();
   useEffect(() => {
+    const router = useRouter();
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Giriş yapmalısınız");
@@ -48,12 +48,12 @@ export default function Home() {
                       Kayıtlı kullanıcılarınızı görüntüleyebilir,
                       düzenleyebilir, silebilir ve ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/users"
                       className="btn btn-primary rounded-1"
                     >
                       Kullanıcılar
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -65,12 +65,12 @@ export default function Home() {
                       Soruları görüntüleyebilir, düzenleyebilir, silebilir ve
                       ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/question"
                       className="btn btn-primary rounded-1"
                     >
                       Sorular
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -82,12 +82,12 @@ export default function Home() {
                       Modelleri görüntüleyebilir, düzenleyebilir, silebilir ve
                       ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/models"
                       className="btn btn-primary rounded-1"
                     >
                       Modeller
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -101,12 +101,12 @@ export default function Home() {
                       Adımları görüntüleyebilir, düzenleyebilir, silebilir ve
                       ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/steps"
                       className="btn btn-primary rounded-1"
                     >
                       Adımlar
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -118,12 +118,12 @@ export default function Home() {
                       Sliderı görüntüleyebilir, düzenleyebilir, silebilir ve
                       ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/slider"
                       className="btn btn-primary rounded-1"
                     >
                       Slider
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -135,12 +135,12 @@ export default function Home() {
                       Hakkımda sayfasını görüntüleyebilir, düzenleyebilir,
                       silebilir ve ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/about"
                       className="btn btn-primary rounded-1"
                     >
                       Hakkımda
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -152,12 +152,12 @@ export default function Home() {
                       Kurucu sayfasını görüntüleyebilir, düzenleyebilir,
                       silebilir ve ekleyebilirsiniz.
                     </p>
-                    <a
+                    <Link
                       href="/admin/founder"
                       className="btn btn-primary rounded-1"
                     >
                       Kurucu
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

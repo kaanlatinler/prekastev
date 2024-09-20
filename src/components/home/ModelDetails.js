@@ -1,5 +1,7 @@
 // Bootstrap CSS dosyasını dahil etmeyi unutmayın
 
+import Image from "next/image";
+
 const ModelDetails = ({ isOpen, onClose, model }) => {
   if (!isOpen) return null; // Modal açık değilse hiçbir şey render etme
 
@@ -27,7 +29,7 @@ const ModelDetails = ({ isOpen, onClose, model }) => {
               <div className="row">
                 <div className="col-md-8 project-images">
                   {model?.images?.map((image, index) => (
-                    <img
+                    <Image
                       key={index}
                       src={image.url}
                       alt={`Model Image ${index + 1}`}

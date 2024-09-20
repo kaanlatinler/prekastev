@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-import api from '@/services/api';
-import ModelDetails from '../home/ModelDetails'; // Modal bileşenini import et
+import { useState, useEffect } from "react";
+import api from "@/services/api";
+import ModelDetails from "../home/ModelDetails"; // Modal bileşenini import et
+import Image from "next/image";
+import Link from "next/link";
 
 const Portfoilo = () => {
-  const [activeFilter, setActiveFilter] = useState('*');
+  const [activeFilter, setActiveFilter] = useState("*");
   const [models, setModels] = useState([]);
   const [selectedModel, setSelectedModel] = useState(null); // Seçilen modeli saklamak için durum ekle
   const [isModalOpen, setIsModalOpen] = useState(false); // Modalın açık olup olmadığını kontrol etmek için durum ekle
@@ -11,7 +13,7 @@ const Portfoilo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('/portfoilo/getModels');
+        const response = await api.get("/portfoilo/getModels");
         setModels(response.data.data);
       } catch (error) {
         console.log(error);
@@ -34,37 +36,43 @@ const Portfoilo = () => {
   };
 
   const filteredItems = () => {
-    if (activeFilter === '*') {
-      return '.item';
+    if (activeFilter === "*") {
+      return ".item";
     }
     return activeFilter;
   };
 
   return (
-    <section id="section-portfolio" className="no-top no-bottom" aria-label="section-portfolio">
+    <section
+      id="section-portfolio"
+      className="no-top no-bottom"
+      aria-label="section-portfolio"
+    >
       <div className="container">
         <div className="spacer-single"></div>
         <div className="row">
           <div className="col-md-12 text-center">
             <ul id="filters" className="wow fadeInUp" data-wow-delay="0s">
               <li>
-                <a
+                <Link
                   href="#"
-                  className={activeFilter === '*' ? 'selected' : ''}
+                  className={activeFilter === "*" ? "selected" : ""}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleFilterClick('*');
+                    handleFilterClick("*");
                   }}
                   data-filter="*"
                 >
                   tüm evler
-                </a>
+                </Link>
               </li>
               {models.map((model, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href="#"
-                    className={activeFilter === `.${model.filter}` ? 'selected' : ''}
+                    className={
+                      activeFilter === `.${model.filter}` ? "selected" : ""
+                    }
                     onClick={(e) => {
                       e.preventDefault();
                       handleFilterClick(`.${model.filter}`);
@@ -72,7 +80,7 @@ const Portfoilo = () => {
                     data-filter={`.${model.filter}`}
                   >
                     {model.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -81,9 +89,16 @@ const Portfoilo = () => {
       </div>
       <div id="gallery" className="row g-0 wow fadeInUp" data-wow-delay=".3s">
         {models.map((model, index) => (
-          <div key={index} className={`col-md-4 col-sm-6 col-12 item ${model.filter} ${activeFilter !== '*' && activeFilter !== `.${model.filter}` ? 'd-none' : ''}`}>
+          <div
+            key={index}
+            className={`col-md-4 col-sm-6 col-12 item ${model.filter} ${
+              activeFilter !== "*" && activeFilter !== `.${model.filter}`
+                ? "d-none"
+                : ""
+            }`}
+          >
             <div className="picframe">
-              <a
+              <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -95,21 +110,25 @@ const Portfoilo = () => {
                     <span className="project-name">{model.title}</span>
                   </span>
                 </span>
-              </a>
-              <img src={model.mainPicture} alt="" />
+              </Link>
+              <Image src={model.mainPicture} alt="" />
             </div>
           </div>
         ))}
-        <div className={`col-md-4 col-sm-6 col-12 item ${activeFilter !== '*' && activeFilter !== '*' ? 'd-none' : ''}`}>
+        <div
+          className={`col-md-4 col-sm-6 col-12 item ${
+            activeFilter !== "*" && activeFilter !== "*" ? "d-none" : ""
+          }`}
+        >
           <div className="picframe">
-            <a className="simple-ajax-popup-align-top" href="pages/projectDetails/modele_details.html">
+            <Link className="simple-ajax-popup-align-top" href="/models">
               <span className="overlay">
                 <span className="pf_text">
                   <span className="project-name">PREKASTEV</span>
                 </span>
               </span>
-            </a>
-            <img src="../images/logobyuk.png" alt="" />
+            </Link>
+            <Image src="../images/logobyuk.png" alt="" />
           </div>
         </div>
       </div>
