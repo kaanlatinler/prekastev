@@ -9,8 +9,7 @@ export default function Home() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Giriş yapmalısınız");
-      router.push("/admin/login");
+      router.push("/");
     }
   }, []);
 
@@ -66,7 +65,7 @@ export default function Home() {
                       ekleyebilirsiniz.
                     </p>
                     <Link
-                      href="/admin/question"
+                      href="/admin/questions"
                       className="btn btn-primary rounded-1"
                     >
                       Sorular

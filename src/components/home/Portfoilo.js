@@ -4,23 +4,10 @@ import ModelDetails from "../home/ModelDetails"; // Modal bileşenini import et
 import Image from "next/image";
 import Link from "next/link";
 
-const Portfoilo = () => {
+const Portfoilo = ({ models }) => {
   const [activeFilter, setActiveFilter] = useState("*");
-  const [models, setModels] = useState([]);
   const [selectedModel, setSelectedModel] = useState(null); // Seçilen modeli saklamak için durum ekle
   const [isModalOpen, setIsModalOpen] = useState(false); // Modalın açık olup olmadığını kontrol etmek için durum ekle
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/portfoilo/getModels");
-        setModels(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);

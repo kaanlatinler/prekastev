@@ -2,20 +2,7 @@ import api from "@/services/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const Slider = () => {
-  const [sliders, setSliders] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/slider/getSliders");
-        setSliders(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+const Slider = ({ sliders }) => {
   return (
     <div>
       <section

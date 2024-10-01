@@ -11,7 +11,7 @@ const HeaderAdmin = () => {
             <div className="md-flex">
               {/* Logo */}
               <div id="logo">
-                <Link href="/">
+                <Link href="/admin">
                   <img className="logo" src="/images/logo.png" alt="Logo" />
                 </Link>
               </div>
@@ -43,6 +43,9 @@ const HeaderAdmin = () => {
                     </li>
                     <li>
                       <Link href="/admin/founder">KURUCU</Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/logout">ÇIKIŞ YAP</Link>
                     </li>
                   </ul>
                 </nav>

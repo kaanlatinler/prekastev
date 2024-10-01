@@ -1,41 +1,9 @@
 import Head from "next/head";
-import Script from "next/script"; // Next.js Script bileşenini ekliyoruz
+import Script from "next/script";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import api from "@/services/api";
-import UpdateForm from "../components/user/UpdateForm";
+import AddForm from "./components/question/AddForm";
 
-export default function User() {
-  const router = useRouter();
-  const [user, setUser] = useState([]);
-  const [token, setToken] = useState("");
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
-    setToken(jwtToken);
-    if (!jwtToken) {
-      alert("Giriş yapmalısınız");
-      router.push("/admin/login");
-    }
-
-    const getUser = async () => {
-      try {
-        const response = await api.get(
-          `/users/getUserById/${router.query.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getUser();
-  }, []);
-
+export default function AddQuestion() {
   return (
     <>
       <Head>
@@ -71,7 +39,7 @@ export default function User() {
           <div className="d-flex align-items-center justify-content-center w-100">
             <div className="row justify-content-center w-100">
               <div className="col-md-8 col-lg-6 col-xxl-3">
-                <UpdateForm user={user} token={token} />
+                <AddForm />
               </div>
             </div>
           </div>
@@ -79,19 +47,19 @@ export default function User() {
       </div>
 
       {/* Script dosyalarını ekliyoruz */}
-      <Script src="../../js/plugins.js" strategy="lazyOnload" />
-      <Script src="../../js/designesia.js" strategy="lazyOnload" />
-      <Script src="../../js/menu.js" strategy="lazyOnload" />
+      <Script src="../js/plugins.js" strategy="lazyOnload" />
+      <Script src="../js/designesia.js" strategy="lazyOnload" />
+      <Script src="../js/menu.js" strategy="lazyOnload" />
       <Script
-        src="../../rs-plugin/js/jquery.themepunch.plugins.min.js"
+        src="../rs-plugin/js/jquery.themepunch.plugins.min.js"
         strategy="lazyOnload"
       />
       <Script
-        src="../../rs-plugin/js/jquery.themepunch.revolution.min.js"
+        src="../rs-plugin/js/jquery.themepunch.revolution.min.js"
         strategy="lazyOnload"
       />
-      <Script src="../../js/cookies.js" strategy="lazyOnload" />
-      <Script src="../../js/rev-slider.js" strategy="lazyOnload" />
+      <Script src="../js/cookies.js" strategy="lazyOnload" />
+      <Script src="../js/rev-slider.js" strategy="lazyOnload" />
     </>
   );
 }

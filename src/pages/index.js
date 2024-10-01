@@ -4,8 +4,30 @@ import Slider from "@/components/home/Slider";
 import About from "@/components/home/About";
 import Steps from "@/components/home/Steps";
 import Portfoilo from "@/components/home/Portfoilo";
+import api from "@/services/api";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const sliderData = await api.get("/slider/getSliders");
+  const aboutData = await api.get("about/getAbout");
+  const stepData = await api.get("steps/getSteps");
+  const modelData = await api.get("/portfoilo/getModels");
+
+  const abouts = aboutData.data.data;
+  const steps = stepData.data.data;
+  const models = modelData.data.data;
+  const sliders = sliderData.data.data;
+
+  return {
+    props: {
+      abouts,
+      steps,
+      models,
+      sliders,
+    },
+  };
+}
+
+export default function Home({ abouts, steps, models, sliders }) {
   return (
     <>
       <Head>
@@ -29,10 +51,10 @@ export default function Home() {
       </Head>
 
       <div id="content" className="no-bottom no-top">
-        <Slider />
-        <About />
-        <Steps />
-        <Portfoilo />
+        <Slider sliders={sliders} />
+        <About abouts={abouts} />
+        <Steps steps={steps} />
+        <Portfoilo models={models} />
       </div>
 
       {/* Script dosyalarını ekliyoruz */}

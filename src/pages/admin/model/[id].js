@@ -4,37 +4,34 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
-import UpdateForm from "../components/user/UpdateForm";
+import UpdateForm from "../components/model/UpdateForm";
 
-export default function User() {
+export async function getServerSideProps(context) {
+  const { id } = context.query; // context üzerinden id alınıyor
+  const token = context.req.cookies.token || ""; // Eğer token varsa sunucu tarafında al
+  const response = await api.get(`/portfoilo/getModelById/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const model = response.data.data;
+  return { props: { model, token } }; // token'ı da prop olarak gönderdik
+}
+
+//usersı düzelt
+export default function Model({ model, token: serverToken }) {
   const router = useRouter();
-  const [user, setUser] = useState([]);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(serverToken || "");
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    setToken(jwtToken);
-    if (!jwtToken) {
+    if (jwtToken) {
+      setToken(jwtToken);
+    } else if (!serverToken) {
       alert("Giriş yapmalısınız");
       router.push("/admin/login");
     }
-
-    const getUser = async () => {
-      try {
-        const response = await api.get(
-          `/users/getUserById/${router.query.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getUser();
-  }, []);
+  }, [serverToken, router]);
 
   return (
     <>
@@ -59,7 +56,7 @@ export default function User() {
       </Head>
 
       <div
-        className="page-wrapper"
+        className="page-wrapper mt-5"
         id="main-wrapper"
         data-layout="vertical"
         data-navbarbg="skin6"
@@ -70,8 +67,8 @@ export default function User() {
         <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
           <div className="d-flex align-items-center justify-content-center w-100">
             <div className="row justify-content-center w-100">
-              <div className="col-md-8 col-lg-6 col-xxl-3">
-                <UpdateForm user={user} token={token} />
+              <div className="col-md-12 col-lg-12 col-xxl-12">
+                <UpdateForm model={model} token={token} />
               </div>
             </div>
           </div>

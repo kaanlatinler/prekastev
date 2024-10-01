@@ -44,16 +44,16 @@ const Footer = ({ disable }) => {
               <h3>HİZMETLERİMİZ</h3>
               <ul>
                 <li>
-                  <Link href="/pages/Services.html">Arsa Keşfi</Link>
+                  <Link href="/services">Arsa Keşfi</Link>
                 </li>
                 <li>
-                  <Link href="/pages/Services.html">Ruhsat Projeleri</Link>
+                  <Link href="/services">Ruhsat Projeleri</Link>
                 </li>
                 <li>
-                  <Link href="/pages/Services.html">Elektrik Ve Otomasyon</Link>
+                  <Link href="/services">Elektrik Ve Otomasyon</Link>
                 </li>
                 <li>
-                  <Link href="/pages/Services.html">Tüm Hizmetlerimiz</Link>
+                  <Link href="/services">Tüm Hizmetlerimiz</Link>
                 </li>
               </ul>
             </div>

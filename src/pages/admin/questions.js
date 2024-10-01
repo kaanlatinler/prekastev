@@ -5,48 +5,55 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
 
-export default function Users() {
+export default function Questions() {
   const router = useRouter();
-  const [users, setUsers] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
     setToken(jwtToken);
     if (!jwtToken) {
-      alert("as");
-      router.push("/");
+      alert("Giriş yapmalısınız");
+      router.push("/admin/login");
     }
 
-    const getUsers = async () => {
+    const getQuestions = async () => {
       try {
-        const response = await api.get("/users/getUsers", {
+        const response = await api.get("/faq/getQuestions", {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },
         });
-        setUsers(response.data.data);
+        setQuestions(response.data.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getUsers();
+    getQuestions();
   }, []);
 
-  // Kullanıcı silme fonksiyonu
-  const handleDelete = async (userId) => {
-    if (confirm("Bu kullanıcıyı silmek istediğinize emin misiniz?")) {
+  // Cevapları kısaltmak için fonksiyon
+  const shortenText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
+  const handleDelete = async (qId) => {
+    if (confirm("Bu Soruyu silmek istediğinize emin misiniz?")) {
       try {
-        await api.delete(`/users/deleteUser/${userId}`, {
+        await api.delete(`/faq/deleteQuestion/${qId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUsers(users.filter((user) => user._id !== userId));
-        alert("Kullanıcı başarıyla silindi");
+        setQuestions(questions.filter((q) => q._id !== qId));
+        alert("Soruyu başarıyla silindi");
       } catch (err) {
         console.log(err);
-        alert("Kullanıcı silinirken bir hata oluştu");
+        alert("Soruyu silinirken bir hata oluştu");
       }
     }
   };
@@ -76,40 +83,55 @@ export default function Users() {
       <div className="m-5 p-5">
         <section className="fullwidthbanner-container pt-5">
           <div id="content" className="no-bottom no-top mt-5">
+            <div className="row mb-5">
+              <div className="col-lg-12">
+                <h1 className="text-center">Sorular</h1>
+              </div>
+            </div>
+            <div className="row mb-5">
+              <div className="col-lg-12">
+                <Link className="btn btn-primary" href="/admin/addQuestion">
+                  Soru Ekle
+                </Link>
+              </div>
+            </div>
             <div className="row align-items-center justify-content-center">
-              <div className="col-lg-8 d-flex align-items-stretch table-responsive">
+              <div className="col-lg-12 d-flex align-items-stretch table-responsive">
                 <table className="table table-dark table-hover border">
-                  <thead className="text-center">
+                  <thead>
                     <tr className="table-light">
-                      <th scope="col">Ad Soyad</th>
-                      <th scope="col">Eposta</th>
-                      <th scope="col">Şifre</th>
-                      <th className="table-warning" scope="col">
+                      <th scope="col">Soru</th>
+                      <th scope="col">Cevap</th>
+                      <th className="table-warning text-center" scope="col">
                         Düzenle
                       </th>
-                      <th className="table-danger" scope="col">
+                      <th className="table-danger text-center" scope="col">
                         Sil
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((user, index) => (
+                    {questions.map((q, index) => (
                       <tr key={index}>
-                        <th scope="row">{user.name}</th>
-                        <td>{user.email}</td>
-                        <td>{user.password}</td>
-                        <td className="text-center">
-                          <Link href={`/admin/user/${user._id}`}>
+                        <th className="p-3" scope="row">
+                          {q.question}
+                        </th>
+                        <td className="p-3">
+                          {shortenText(q.answer, 100)}{" "}
+                          {/* Burada 100 karakter sınırını kullanıyoruz */}
+                        </td>
+                        <td className="text-center p-3">
+                          <Link href={`/admin/question/${q._id}`}>
                             <span className="material-symbols-outlined">
                               edit_square
                             </span>
                           </Link>
                         </td>
-                        <td className="text-center">
+                        <td className="text-center p-3">
                           <span
                             className="material-symbols-outlined"
                             style={{ cursor: "pointer", color: "red" }}
-                            onClick={() => handleDelete(user._id)}
+                            onClick={() => handleDelete(q._id)}
                           >
                             delete
                           </span>

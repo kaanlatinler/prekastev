@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import api from "@/services/api";
 
-const RegisterForm = ({token}) => {
+const RegisterForm = ({ token }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -124,7 +124,7 @@ const RegisterForm = ({token}) => {
         </form>
         <Link
           className="btn btn-secondary w-100 py-8 fs-4 mb-4 rounded-2"
-          href="/admin/login"
+          href="/admin/users"
         >
           Geri Dön
         </Link>

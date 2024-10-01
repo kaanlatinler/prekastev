@@ -1,21 +1,8 @@
-import { useState, useEffect } from 'react';
-import api from '@/services/api';
+import { useState, useEffect } from "react";
+import api from "@/services/api";
 
-const Steps = () => {
+const Steps = ({ steps }) => {
   const [activeTab, setActiveTab] = useState(0); // Aktif sekmeyi tutar
-  const [steps, setSteps] = useState([]); // API'den gelen adımları tutar
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/steps/getSteps'); // Veriyi API'den alır
-        setSteps(response.data.data); // Gelen veriyi state'e set eder
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleTabClick = (index) => {
     setActiveTab(index); // Tıklanan sekmeyi aktif olarak ayarlar
@@ -42,10 +29,11 @@ const Steps = () => {
                 {steps.map((step, index) => (
                   <li
                     key={index}
-                    className={activeTab === index ? 'active' : ''} // Aktif sekmeye göre class ekler
+                    className={activeTab === index ? "active" : ""} // Aktif sekmeye göre class ekler
                     onClick={() => handleTabClick(index)} // Sekmeye tıklandığında set eder
                   >
-                    <span>{step.title}</span> {/* Sekme başlıklarını gösterir */}
+                    <span>{step.title}</span>{" "}
+                    {/* Sekme başlıklarını gösterir */}
                     <div className="v-border"></div>
                   </li>
                 ))}
@@ -53,13 +41,14 @@ const Steps = () => {
 
               {/* İçerikleri dinamik olarak render ediyoruz */}
               <div className="de_tab_content">
-                {steps.map((step, index) => (
-                  activeTab === index && ( // Sadece aktif sekmeyi gösterir
-                    <div key={index}>
-                      <p>{step.message}</p> {/* Sekme mesajını gösterir */}
-                    </div>
-                  )
-                ))}
+                {steps.map(
+                  (step, index) =>
+                    activeTab === index && ( // Sadece aktif sekmeyi gösterir
+                      <div key={index}>
+                        <p>{step.message}</p> {/* Sekme mesajını gösterir */}
+                      </div>
+                    )
+                )}
               </div>
             </div>
           </div>

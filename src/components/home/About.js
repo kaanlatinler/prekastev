@@ -3,21 +3,7 @@ import api from "@/services/api";
 import Link from "next/link";
 import Image from "next/image";
 
-const About = () => {
-  const [abouts, setAbouts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/about/getAbout");
-        setAbouts(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
+const About = ({ abouts }) => {
   return (
     <section id="section-about">
       <div className="container">
