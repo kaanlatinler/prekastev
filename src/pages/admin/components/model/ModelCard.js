@@ -5,18 +5,28 @@ import api from "@/services/api";
 const ModelCard = ({ model, token }) => {
   const router = useRouter();
 
-  const handelDelete = () => {
-    const response = api.delete(`/portfoilo/deleteModel/${model._id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.data.success) {
-      alert("Model başarıyla silindi");
-      router.push("/admin/models");
-    } else {
+  // Model verisi eksikse bu durumda bir şey göstermeyin
+  if (!model) {
+    return <div>Model verisi bulunamadı.</div>;
+  }
+
+  const handleDelete = async () => {
+    try {
+      const response = await api.delete(`/portfoilo/deleteModel/${model._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.data.success) {
+        alert("Model başarıyla silindi");
+        router.push("/admin/models");
+      } else {
+        alert("Model silinirken bir hata oluştu");
+      }
+    } catch (error) {
+      console.error("Silme işleminde hata oluştu:", error);
       alert("Model silinirken bir hata oluştu");
-      router.push("/admin/models");
     }
   };
 
@@ -25,11 +35,15 @@ const ModelCard = ({ model, token }) => {
   };
 
   return (
-    <div class="col-lg-4">
-      <div class="card text-white">
-        <img src={model.mainPicture} class="card-img-top" alt={model.title} />
-        <div class="card-body">
-          <h5 class="card-title mb-3">{model.title}</h5>
+    <div className="col-lg-4">
+      <div className="card text-white">
+        <img
+          src={model.mainPicture || "default-image.jpg"}
+          className="card-img-top"
+          alt={model.title || "Model"}
+        />
+        <div className="card-body">
+          <h5 className="card-title mb-3">{model.title || "Model Başlığı"}</h5>
           <div className="d-flex justify-content-between">
             <button
               onClick={handleEdit}
@@ -38,7 +52,7 @@ const ModelCard = ({ model, token }) => {
               Düzenle
             </button>
             <button
-              onClick={handelDelete}
+              onClick={handleDelete}
               className="btn btn-outline-danger btn-lg"
             >
               Sil
